@@ -1,0 +1,46 @@
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                    class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+
+                    <!-- Email input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="email" id="form3Example3" class="form-control form-control-lg"
+                            placeholder="Enter a valid email address" formControlName="email"
+                            [class.is-invalid]="f['email'].touched && f['email'].invalid" />
+                        <label class="form-label" for="form3Example3">Email address</label>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="f['email'].touched && f['email'].errors">
+                        <span *ngIf="f['email'].errors['required']">Email is required.</span>
+                        <span *ngIf="f['email'].errors['email']">Invalid email format.</span>
+                    </div>
+
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-3">
+                        <input type="password" id="form3Example4" class="form-control form-control-lg"
+                            placeholder="Enter password" formControlName="password"
+                            [class.is-invalid]="f['password'].touched && f['password'].invalid" />
+                        <label class="form-label" for="form3Example4">Password</label>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="f['password'].touched && f['password'].errors">
+                        <span *ngIf="f['password'].errors['required']">Password is required.</span>
+                        <span *ngIf="f['password'].errors['minlength']">
+                            Minimum 6 characters required.
+                        </span>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>

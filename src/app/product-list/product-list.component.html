@@ -1,0 +1,45 @@
+<div class="container">
+
+  
+  @if (productList.length > 0) {
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th scope="col">Category</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of productList; track item.id) {
+          <tr>
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td> <!-- fixed 'desciption' typo -->
+            <td>{{ item.price }}</td>
+            <td>{{ item.category }}</td>
+            <td>
+              <button class="btn btn-primary mx-2" (click)="getProductDetails(item)">Edit</button>
+              <button class="btn btn-danger" (click)="deleteProduct(item)">Delete</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+} @else {
+  <div class="container mt-2">
+    <label for="" class="form-control mt-2"> <strong>
+      <p class="text-center mt-4">No products found.</p>
+    </strong>
+  </label>
+  
+</div>
+}
+
+<div class="row justify-content-center mt-2">
+  <button type="button" class="btn btn-primary col-2"  (click)="navigateTo('/product-manage')">Register Product</button>
+</div>
+</div>

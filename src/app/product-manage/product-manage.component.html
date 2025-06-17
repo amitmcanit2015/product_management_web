@@ -1,0 +1,48 @@
+<div class="container mt-4">
+    
+    <label for="" class="form-control text-center mb-2"> <strong>Product Registration</strong></label>
+
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="form3Example3">ID</label>
+            <input type="email" id="form3Example3" class="form-control form-control-lg"
+                placeholder="Enter a valid ID" formControlName="id"
+                [class.is-invalid]="f['id'].touched && f['id'].invalid"/>
+        </div>
+        <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="form3Example3">Name</label>
+            <input type="email" id="form3Example3" class="form-control form-control-lg"
+                placeholder="Enter a valid Nmae" formControlName="name"
+                [class.is-invalid]="f['name'].touched && f['name'].invalid" />
+        </div>
+        <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="form3Example3">Description</label>
+            <input type="email" id="form3Example3" class="form-control form-control-lg"
+                placeholder="Enter a valid Description" formControlName="description"
+                [class.is-invalid]="f['description'].touched && f['description'].invalid" />
+        </div>
+        <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="form3Example3">Price</label>
+            <input type="email" id="form3Example3" class="form-control form-control-lg"
+                placeholder="Enter a valid Price" formControlName="price"
+                [class.is-invalid]="f['price'].touched && f['price'].invalid" />
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="form3Example3">Category</label>
+            <input type="email" id="form3Example3" class="form-control form-control-lg"
+                placeholder="Enter a valid Category" formControlName="category"
+                [class.is-invalid]="f['category'].touched && f['category'].invalid" />
+        </div>
+
+
+        <div class="row justify-content-center mt-2">
+            @if(idExist){
+                <button type="submit" class="btn btn-warning col-2" [disabled]="productForm.invalid">Update</button>
+            } @else {
+                <button type="submit" class="btn btn-primary  col-2" [disabled]="productForm.invalid">Submit</button>
+            }
+        </div>
+    </form>
+</div>
