@@ -8,7 +8,6 @@ export const authGuard: CanActivateFn = (
 ) => {
   const router = inject(Router);
   const commonFunctionService = inject(CommonFunctionService);
-  debugger
   let goto = route.queryParamMap.get('goto') ?? '';
   const token = commonFunctionService.getDecryptData(decodeURIComponent(goto));
   const token_1 = commonFunctionService.getDecryptData(token);

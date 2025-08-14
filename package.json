@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "e2e": "ng e2e",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "private": true,
   "dependencies": {
@@ -18,9 +21,13 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
+    "@angular/service-worker": "^18.2.0",
+    "@ngx-translate/core": "^17.0.0",
+    "@ngx-translate/http-loader": "^17.0.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.6",
     "crypto-js": "^4.2.0",
+    "number-adder": "file:number-adder-1.0.0.tgz",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
@@ -29,14 +36,28 @@
     "@angular-devkit/build-angular": "^18.2.19",
     "@angular/cli": "^18.2.19",
     "@angular/compiler-cli": "^18.2.0",
+    "@cypress/schematic": "^4.1.0",
     "@types/crypto-js": "^4.2.2",
     "@types/jasmine": "~5.1.0",
+    "cypress": "^14.5.4",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.5.2"
+    "typescript": "~5.5.2",
+    "webpack-bundle-analyzer": "^4.10.2"
+  },
+  "browserslist": {
+    "production": [
+      "last 2 Chrome versions",
+      "last 2 Firefox versions",
+      "last 2 Safari versions",
+      "last 2 Edge versions"
+    ],
+    "development": [
+      "last 1 Chrome version"
+    ]
   }
 }

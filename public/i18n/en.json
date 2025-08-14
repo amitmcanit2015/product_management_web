@@ -1,0 +1,18 @@
+{
+    "LOGIN": {
+        "EMAIL_ADDRESS": "Email address",
+        "PASSWORD": "Password",
+        "SUBMIT": "Login",
+        "EMAIL_ADDRESS_ERROR": "Email address is required.",
+        "PASSWORD_ERROR": "Password is required.",
+        "EMAIL_ADDRESS_INVALID": "Invalid email address.",
+        "PASSWORD_INVALID": "Invalid password.",
+        "EMAIL_ADDRESS_MIN_LENGTH": "Email address must be at least 6 characters.",
+        "PASSWORD_MIN_LENGTH": "Password must be at least 6 characters.",
+        "EMAIL_ADDRESS_MAX_LENGTH": "Email address must be at most 100 characters.",
+        "PASSWORD_MAX_LENGTH": "Password must be at most 100 characters.",
+        "EMAIL_ADDRESS_PATTERN": "Email address must be a valid email address.",
+        "PASSWORD_PATTERN": "Password must be a valid password.",
+        "LOGIN_ERROR": "Invalid credentials."
+    }
+}

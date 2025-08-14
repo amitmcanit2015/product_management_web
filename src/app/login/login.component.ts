@@ -1,17 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../_services/login/login.service';
 import { CommonFunctionService } from '../_services/common-function.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
 
@@ -19,12 +22,14 @@ export class LoginComponent {
   fb = inject(FormBuilder);
   loginService = inject(LoginService);
   commonFunctionService = inject(CommonFunctionService);
+  translate = inject(TranslateService);
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
+  loginError?: string;
   onSubmit() {
     if (this.loginForm.valid) {
       this.loginService.login(this.loginForm.value).subscribe((res: any) => {
@@ -38,14 +43,15 @@ export class LoginComponent {
 
           this.router.navigate(['/product-list'], { queryParams: { goto: encryptData } })
         } else {
-          console.error("Due to connection error, Something went wrong. Please try after some time");
+          this.loginError = 'Invalid credentials';
         }
       }, error => {
         console.error("Due to connection error, Something went wrong. Please try after some time");
-      })
-
+        this.loginError = 'Invalid credentials';
+      });
     } else {
-      console.error('Please fill the form');
+      this.loginForm.markAllAsTouched();
+      this.loginError = 'Please fill the form';
     }
   }
 
@@ -53,4 +59,14 @@ export class LoginComponent {
   get f() {
     return this.loginForm.controls;
   }
+
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
+
+
+  ngOnInit(): void {
+    this.translate.use('en');
+  }
+
 }

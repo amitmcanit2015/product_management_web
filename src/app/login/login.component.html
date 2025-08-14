@@ -1,4 +1,4 @@
-<section class="vh-100">
+<!-- <section class="vh-100">
     <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-9 col-lg-6 col-xl-5">
@@ -8,39 +8,104 @@
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
 
-                    <!-- Email input -->
                     <div data-mdb-input-init class="form-outline mb-4">
                         <input type="email" id="form3Example3" class="form-control form-control-lg"
                             placeholder="Enter a valid email address" formControlName="email"
                             [class.is-invalid]="f['email'].touched && f['email'].invalid" />
-                        <label class="form-label" for="form3Example3">Email address</label>
+                        <label class="form-label" for="form3Example3">{{ 'LOGIN.EMAIL_ADDRESS' | translate }}</label>
                     </div>
-                    <div class="invalid-feedback" *ngIf="f['email'].touched && f['email'].errors">
-                        <span *ngIf="f['email'].errors['required']">Email is required.</span>
-                        <span *ngIf="f['email'].errors['email']">Invalid email format.</span>
+                    <div id="emailError" class="invalid-feedback" *ngIf="f['email'].touched && f['email'].errors">
+                        <span *ngIf="f['email'].errors['required']">{{ 'LOGIN.EMAIL_ADDRESS_ERROR' | translate }}</span>
+                        <span *ngIf="f['email'].errors['email']">{{ 'LOGIN.EMAIL_ADDRESS_INVALID' | translate }}</span>
                     </div>
 
-                    <!-- Password input -->
                     <div data-mdb-input-init class="form-outline mb-3">
                         <input type="password" id="form3Example4" class="form-control form-control-lg"
                             placeholder="Enter password" formControlName="password"
                             [class.is-invalid]="f['password'].touched && f['password'].invalid" />
-                        <label class="form-label" for="form3Example4">Password</label>
+                        <label class="form-label" for="form3Example4">{{ 'LOGIN.PASSWORD' | translate }}</label>
                     </div>
-                    <div class="invalid-feedback" *ngIf="f['password'].touched && f['password'].errors">
-                        <span *ngIf="f['password'].errors['required']">Password is required.</span>
-                        <span *ngIf="f['password'].errors['minlength']">
-                            Minimum 6 characters required.
-                        </span>
+                    <div id="passwordError" class="invalid-feedback" *ngIf="f['password'].touched && f['password'].errors">
+                        <span *ngIf="f['password'].errors['required']">{{ 'LOGIN.PASSWORD_ERROR' | translate }}</span>
+                        <span *ngIf="f['password'].errors['minlength']">{{ 'LOGIN.PASSWORD_MIN_LENGTH' | translate }}</span>
+                        <span *ngIf="f['password'].errors['maxlength']">{{ 'LOGIN.PASSWORD_MAX_LENGTH' | translate }}</span>
+                        <span *ngIf="f['password'].errors['pattern']">{{ 'LOGIN.PASSWORD_PATTERN' | translate }}</span>
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">{{ 'LOGIN.SUBMIT' | translate }}</button>
                     </div>
-
                 </form>
+
+                <div id="loginError" *ngIf="loginError" class="alert alert-danger mt-2">{{ 'LOGIN.LOGIN_ERROR' | translate }}</div>
             </div>
         </div>
     </div>
 
-</section>
+</section> -->
+
+<!-- Main container with ARIA landmark role -->
+<main role="main" class="vh-100 d-flex align-items-center justify-content-center">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="images/login_page.webp" loading="lazy"
+                    class="img-fluid" alt="Illustration of a person logging in" aria-hidden="true">
+            </div>
+
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <!-- Form with ARIA attributes -->
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate aria-labelledby="login-title">
+                    <h1 id="login-title" class="h3 mb-3 fw-normal">Login</h1>
+
+                    <!-- Email Input with ARIA attributes -->
+                    <div class="form-floating mb-3">
+                        <input type="email" id="email" class="form-control" formControlName="email"
+                            [class.is-invalid]="f['email'].touched && f['email'].invalid" placeholder="name@example.com"
+                            aria-required="true" aria-invalid="f['email'].touched && f['email'].invalid"
+                            [attr.aria-describedby]="f['email'].touched && f['email'].invalid ? 'email-error' : null">
+                        <label for="email">{{ 'LOGIN.EMAIL_ADDRESS' | translate }}</label>
+
+                        <!-- Error messages with ARIA live region -->
+                        <div *ngIf="f['email'].touched && f['email'].invalid" id="email-error" class="invalid-feedback"
+                            role="alert" aria-live="assertive">
+                            <span *ngIf="f['email'].errors?.['required']">{{ 'LOGIN.EMAIL_ADDRESS_ERROR' | translate
+                                }}</span>
+                            <span *ngIf="f['email'].errors?.['email']">{{ 'LOGIN.EMAIL_ADDRESS_INVALID' | translate
+                                }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Password Input with ARIA attributes -->
+                    <div class="form-floating mb-3">
+                        <input type="password" id="password" class="form-control" formControlName="password"
+                            [class.is-invalid]="f['password'].touched && f['password'].invalid" placeholder="Password"
+                            aria-required="true" aria-invalid="f['password'].touched && f['password'].invalid"
+                            [attr.aria-describedby]="f['password'].touched && f['password'].invalid ? 'password-error' : null">
+                        <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
+
+                        <!-- Error messages with ARIA live region -->
+                        <div *ngIf="f['password'].touched && f['password'].invalid" id="password-error"
+                            class="invalid-feedback" role="alert" aria-live="assertive">
+                            <span *ngIf="f['password'].errors?.['required']">{{ 'LOGIN.PASSWORD_ERROR' | translate
+                                }}</span>
+                            <span *ngIf="f['password'].errors?.['minlength']">{{ 'LOGIN.PASSWORD_MIN_LENGTH' | translate
+                                }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button with ARIA attributes -->
+                    <button type="submit" class="btn btn-primary w-100 py-2" [disabled]="loginForm.invalid"
+                        [attr.aria-disabled]="loginForm.invalid">
+                        {{ 'LOGIN.SUBMIT' | translate }}
+                    </button>
+                </form>
+
+                <!-- Server Error Message with ARIA live region -->
+                <div *ngIf="loginError" class="alert alert-danger mt-3" role="alert" aria-live="assertive">
+                    {{ 'LOGIN.LOGIN_ERROR' | translate }}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
